@@ -63,11 +63,11 @@ VALUES
     
     ('Who''s Cole?',
     'I don''t know.',
-    (SELECT id FROM users WHERE fname = 'Chin')),
+    (SELECT id FROM users WHERE fname = 'Sam')),
 
     ('Who'' ready to make some fat stacks?',
     'Full stack bitch.',
-    (SELECT id FROM users WHERE fname = 'Chin'));
+    (SELECT id FROM users WHERE fname = 'Taylor'));
 
 INSERT INTO 
     question_follows (follower_id, question_id)
