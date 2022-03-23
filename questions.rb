@@ -58,13 +58,14 @@ class User
             users
         LEFT JOIN
         (SELECT
-            user_id, CAST(SUM(likes) AS FLOAT)/COUNT(question_id) AS average
+            user_id, CAST(SUM(likes) AS FLOAT)/COUNT(questions.title) AS average
         FROM
             questions
-        JOIN
-            (SELECT COUNT(liker_id) AS likes, question_id
+        LEFT JOIN
+            (SELECT question_id,COUNT(liker_id) AS likes
             FROM questions 
-            JOIN question_likes ON questions.id = question_id
+            LEFT JOIN question_likes ON questions.id = question_id
+            WHERE question_id IS NOT NULL
             GROUP BY question_id)
         ON
             questions.id = question_id

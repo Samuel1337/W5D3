@@ -65,7 +65,19 @@ VALUES
     'I don''t know.',
     (SELECT id FROM users WHERE fname = 'Sam')),
 
-    ('Who'' ready to make some fat stacks?',
+    ('Who'' reasdf?',
+    'Full stack bitch.',
+    (SELECT id FROM users WHERE fname = 'Taylor')),
+
+    ('Who'' ready to sagd?',
+    'Full stack bitch.',
+    (SELECT id FROM users WHERE fname = 'Hae Won')),
+
+    ('Who'' reawefaw?',
+    'Full stack bitch.',
+    (SELECT id FROM users WHERE fname = 'Hae Won')),
+    
+    ('Who'' rgsadfas?',
     'Full stack bitch.',
     (SELECT id FROM users WHERE fname = 'Taylor'));
 
@@ -73,7 +85,7 @@ INSERT INTO
     question_follows (follower_id, question_id)
 VALUES 
     ((SELECT id FROM users WHERE fname = 'Hae Won'),
-    (SELECT id FROM questions WHERE title = 'Who'' ready to make some fat stacks?')),
+    (SELECT id FROM questions WHERE title = 'Who'' reasdf?')),
 
     ((SELECT id FROM users WHERE fname = 'Hae Won'),
     (SELECT id FROM questions WHERE title = 'Who''s Cole?')),
@@ -113,6 +125,12 @@ VALUES
 
     ((SELECT id FROM users WHERE fname = 'Taylor'),
     (SELECT id FROM questions WHERE title = 'Who''s Chucky Woody?')),
+    ((SELECT id FROM users WHERE fname = 'Taylor'),
+    (SELECT id FROM questions WHERE title = 'Who'' reasdf?')),
+    ((SELECT id FROM users WHERE fname = 'Taylor'),
+    (SELECT id FROM questions WHERE title = 'Who'' reasdf?')),
+    ((SELECT id FROM users WHERE fname = 'Taylor'),
+    (SELECT id FROM questions WHERE title = 'Who'' reawefaw?')),
     
     ((SELECT id FROM users WHERE fname = 'Sam'),
     (SELECT id FROM questions WHERE title = 'Who''s Cole?'));
