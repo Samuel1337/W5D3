@@ -51,7 +51,7 @@ class User
     end
 
     def average_karma
-        data = QuestionsDatabase.instance.execute(<<-SQL)
+        data = QuestionsDatabase.instance.execute(<<-SQL,@id)
         SELECT
             id, fname, lname, average
         FROM
@@ -73,8 +73,32 @@ class User
             user_id)
         ON
             users.id = user_id
+        WHERE
+            id = ?
         SQL
-        data = data.map {|datum| self.new(datum)}.first
+        data.first['average']
+    end
+# user = Users.new(options) options = {fname = Jerry, lname = Park}
+# user.save
+    def save
+        if @id.nil?
+            data = QuestionsDatabase.instance.execute(<<-SQL,self.fname,self.lname)
+                INSERT INTO
+                    users (fname,lname)
+                VALUES
+                    (?,?)
+            SQL
+            @id = QuestionsDatabase.instance.last_insert_row_id
+        else
+            data = QuestionsDatabase.instance.execute(<<-SQL,self.fname,self.lname,@id)
+                UPDATE
+                    users
+                SET
+                    fname = ?,lname = ?
+                WHERE
+                    id = ?
+            SQL
+       end
     end
 end
 
